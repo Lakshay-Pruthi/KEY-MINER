@@ -22,11 +22,14 @@ function Main() {
         }
     }
 
-    ethereum.on("accountsChanged", () => {
-        setUserAccount();
-    });
+    if (window.ethereum) {
 
-    ethereum.on('chainChanged', (_chainId) => window.location.reload());
+        ethereum.on("accountsChanged", () => {
+            setUserAccount();
+        });
+
+        ethereum.on('chainChanged', (_chainId) => window.location.reload());
+    }
 
     useEffect(() => {
         async function loadContract() {
